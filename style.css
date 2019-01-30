@@ -1,0 +1,18 @@
+.btn-two{
+    margin:20px;
+}
+
+.border{
+    border:2px solid #000;
+}
+
+.box{
+    height: 40px;
+    width: 40px;
+    background: red;
+    transition: 0.5s;
+}
+
+body{
+    transition: 0.5s;
+}
