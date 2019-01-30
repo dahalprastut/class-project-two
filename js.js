@@ -81,37 +81,66 @@
 
 // document.getElementsByClassName('container-two')[0].innerHTML='<h1>this</h1>';
 
-function forMargin(){
+// function forMargin(){
     
     
-        document.getElementsByClassName('box')[0].style=`margin-left:70vw`;
-        setTimeout(function(){
-            document.getElementsByClassName('box')[0].style=`margin-right:70vw`;
+//         document.getElementsByClassName('box')[0].style=`margin-left:70vw`;
+//         setTimeout(function(){
+//             document.getElementsByClassName('box')[0].style=`margin-right:70vw`;
 
-        },5000) 
+//         },5000) 
             
     
 
-}
+// }
+// var move = document.querySelector('.box');
 
-function runOnClick(){
-        forMargin();
-}
+// move.onclick = function(){
+//         forMargin();
+// }
 
 
-function changeColor(){
-    var r= Math.floor(Math.random()*255);
-    var g= Math.floor(Math.random()*255);
-    var b= Math.floor(Math.random()*255);
-    var a= Math.random();
-    document.getElementsByClassName('color-change')[0].parentElement.style=`background:rgba(${r},${g},${b},${a})`;
-}
+// function changeColor(){
+//     var r= Math.floor(Math.random()*255);
+//     var g= Math.floor(Math.random()*255);
+//     var b= Math.floor(Math.random()*255);
+//     var a= Math.random();
+//     document.getElementsByClassName('color-change')[0].parentElement.style=`background:rgba(${r},${g},${b},${a})`;
+// }
 
-function clicked(){
-    setInterval(function(){
-        // for(i=0;i<=100;i++){
-            changeColor();
+// var colorChange = document.querySelector('.color-change');
+
+// colorChange.onclick =function(){
+//     setInterval(function(){
+//         // for(i=0;i<=100;i++){
+//             changeColor();
             
-        // }
-    },500);
+//         // }
+//     },500);
+// }
+
+
+var leftClick= document.querySelector('.left-top');
+var rightClick= document.querySelector('.right-top');
+var leftBottomClick= document.querySelector('.left-bottom');
+var changes =document.querySelector('.changes').classList;
+
+leftClick.onclick = function() {
+    changes.add('box-three');
+    changes.remove('box-one');
+    changes.remove('box-two');
 }
+
+rightClick.onclick = function(){
+    changes.remove('box-three');
+    changes.add('box-one');
+    changes.remove('box-two');
+}
+
+leftBottomClick.onclick = function(){
+    changes.remove('box-three');
+    changes.remove('box-one');
+    changes.add('box-two');
+}
+
+
