@@ -120,27 +120,109 @@
 // }
 
 
-var leftClick= document.querySelector('.left-top');
-var rightClick= document.querySelector('.right-top');
-var leftBottomClick= document.querySelector('.left-bottom');
-var changes =document.querySelector('.changes').classList;
+// var leftClick= document.querySelector('.left-top');
+// var rightClick= document.querySelector('.right-top');
+// var leftBottomClick= document.querySelector('.left-bottom');
+// var changes =document.querySelector('.changes');
 
-leftClick.onclick = function() {
-    changes.add('box-three');
-    changes.remove('box-one');
-    changes.remove('box-two');
-}
+// leftClick.onclick = function() {
+//     changes.add('box-three');
+//     changes.remove('box-one');
+//     changes.remove('box-two');
+// }
 
-rightClick.onclick = function(){
-    changes.remove('box-three');
-    changes.add('box-one');
-    changes.remove('box-two');
-}
+// rightClick.onclick = function(){
+//     changes.remove('box-three');
+//     changes.add('box-one');
+//     changes.remove('box-two');
+// }
 
-leftBottomClick.onclick = function(){
-    changes.remove('box-three');
-    changes.remove('box-one');
-    changes.add('box-two');
-}
+// leftBottomClick.onclick = function(){
+//     changes.remove('box-three');
+//     changes.remove('box-one');
+//     changes.add('box-two');
+// }
+
+
+
+// creating new element in html and append
+
+
+
+// var noOfPerson = Number(prompt('enter how many numbers you want to enter?'));
+
+// if(isNaN(noOfPerson) !=true){
+//     for(i=1; i <=noOfPerson ; i++){
+//         var personName = prompt(`enter the ${i} person name`);
+//         var division = document.createElement('div');
+//         var header = document.createElement('h1');
+//         header.innerText=`${personName}`;
+//         division.appendChild(header);
+//         document.body.appendChild(division);
+//     }
+
+    
+// }else{
+//     alert('please enter a number');
+// }
+
+
+
+// for to do
+
+var ask=document.querySelector('.addToDo');
+var click=0;
+ask.onclick = function(){
+    
+        var askForDo = prompt('what do you want to add in todo');
+
+        var forRow =document.createElement('tr');
+     
+        
+        var forTableData = document.createElement('td');
+        
+        
+        var removeButton = document.createElement('td');
+        
+        var button = document.createElement('button');
+        button.innerText=(`remove`);
+
+        for(i=0 ; i <= click ; i++){         //when clicked gives onclick attribute            
+            
+            var attributeCreate=document.createAttribute('onclick');
+            attributeCreate.value = `remove(${i})`;
+            button.setAttributeNode(attributeCreate);
+
+        }
+
+
+        removeButton.appendChild(button);
+
+        forTableData.innerText=`${askForDo}`;
+        
+        forRow.appendChild(forTableData);
+        forRow.appendChild(removeButton);
+        selectTable= document.querySelector('table');
+        selectTable.appendChild(forRow);
+        click=click+1;
+    
+        
+    }   
+
+    function remove(i){           //selects from document eg remove(0)
+        document.querySelector('table').children[i].innerHTML='';
+    }
+
+
+    // ---------------
+
+
+// var add= document.querySelector('.addToDo');
+
+//  add.onclick = function (){
+//     var things = prompt('Enter to do thing');
+//      document.querySelector
+//  }
+
 
 
