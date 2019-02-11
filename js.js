@@ -599,22 +599,44 @@
 // });
 
 var a = document.querySelector('img').width;
-console.log(a);
-var dragger = function(event){
-    event.preventDefault();
-    document.querySelector('ul').style = `margin-left:-${a}px`;
+var images =  document.querySelectorAll('img');
+b = (images.length-4)*a;
+a= a- 390;
 
-    a = a + 390;
+
+var dragger = function(event){
+    if(event.screenX < screenXPosition){
+        a = a + 390;
+        if (a > b){
+            a =b;
+        }
+        document.querySelector('ul').style = `margin-left:-${a}px`;
+
+        
+      
+    }else{
+        a = a - 390;
+        if(a < 0){
+            a = 0;
+        }
+        document.querySelector('ul').style = `margin-left:-${a}px`;
+ 
+
+      
+
+    }
   
-    console.log(a);
 
 };
-var images =  document.querySelectorAll('img');
+var screenXPosition = 0;
 for(var i = 0 ; i < images.length ; i++){
-
+ 
+    
+    document.querySelectorAll('img')[i].ondragstart = function(event){
+        screenXPosition = event.screenX;
+    };
     document.querySelectorAll('img')[i].ondragend = dragger
 
-    console.log('index',i);
 }
 
 
