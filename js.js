@@ -544,16 +544,16 @@
 //         this.answers = answers;
 //         this.correctAnswer = correctAnswer;
 //     }
-    
+
 //     //method for asking question
 //     Question.prototype.logQuestion = function(){
 //         console.log(this.question);
 //         for(var i=0 ; i < this.answers.length ; i++){
 //             console.log(`${i} ${this.answers[i]}`);
 //         }
-    
+
 //     }
-    
+
 //     //method for checking question
 //     Question.prototype.forCheck = function(userAnswer){
 //         if(userAnswer == this.correctAnswer){
@@ -562,18 +562,18 @@
 //             console.log(`you are wrong. the correct answer is ${this.correctAnswer}`);
 //         }
 //     }
-    
+
 //     var question1 = new Question('what is my name?', ['prastut', 'harihar'], 0);
 //     var question2 = new Question('what is my favourite band?', ['pearl jam', 'bon jovi', 'pink floyd'], 0);
 //     var arrayForQuestion = [question1 , question2];
-    
+
 
 //     function nextQuestion(){
-    
+
 //         // for asking question in console
 //         var number = Math.floor(Math.random()*arrayForQuestion.length);
 //         arrayForQuestion[number].logQuestion();
-        
+
 //         // for user answer
 //         var userAnswer =prompt('what is the correct answer number?');
 //         if(userAnswer!=='exit'){
@@ -581,10 +581,10 @@
 //             nextQuestion();
 //         }
 //     }
-   
+
 //     nextQuestion();
 
-    
+
 // })();
 
 // -------------------
@@ -598,46 +598,248 @@
 //     console.log(event);
 // });
 
-var a = document.querySelector('img').width;
-var images =  document.querySelectorAll('img');
-b = (images.length-4)*a;
-a= a- 390;
+// var widthOfImg = document.querySelector('img').width;
+// var assignWidth = widthOfImg;
+// var images =  document.querySelectorAll('img');
+// b = (images.length-4)*widthOfImg;
+// console.log(widthOfImg);
+// widthOfImg= widthOfImg- 480;
 
 
-var dragger = function(event){
-    if(event.screenX < screenXPosition){
-        a = a + 390;
-        if (a > b){
-            a =b;
-        }
-        document.querySelector('ul').style = `margin-left:-${a}px`;
+// var dragger = function(event){
+//     console.log('event Screen X postion',event.screenX)
+//     console.log('Screen X ',screenXPosition)
+//     if(event.screenX < screenXPosition){
+//         widthOfImg = widthOfImg + assignWidth;
+//         if (widthOfImg > b){
+//             widthOfImg =b;
+//         }
+//         document.querySelector('ul').style = `margin-left:-${widthOfImg}px`;
 
-        
-      
-    }else{
-        a = a - 390;
-        if(a < 0){
-            a = 0;
-        }
-        document.querySelector('ul').style = `margin-left:-${a}px`;
- 
 
-      
 
+//     }else{
+//         widthOfImg = widthOfImg - assignWidth;
+//         if(widthOfImg < 0){
+//             widthOfImg = 0;
+//         }
+//         document.querySelector('ul').style = `margin-left:-${widthOfImg}px`;
+
+
+
+
+//     }
+
+
+// };
+// var screenXPosition = 0;
+// for(var i = 0 ; i < images.length ; i++){
+
+//     console.log(i);
+//     document.querySelectorAll('img')[i].ondragstart = function(event){
+//         screenXPosition = event.screenX;
+//     };
+//     document.querySelectorAll('img')[i].ondragend = dragger
+
+
+//     // document.querySelectorAll('img')[i].onclick = function(){
+//     //     document.querySelectorAll('img')[i].style='transform:scale(2)';
+//     // }
+
+// }
+
+
+
+
+
+
+
+//to do list
+
+
+
+// // get list in class
+// document.querySelector('button').onclick = function(){
+
+//      getData = prompt('enter the first to do list');
+//      var firstList = new ToDo().getToDO(getData);
+
+// }
+// class ToDo{
+//     getToDO(getData){
+//         return this.getData;
+//     }
+// }
+
+// // create object
+
+// // append in html
+
+// var selectBody = document.querySelector('body');
+// var insertParagraph = document.createElement('p');
+// insertParagraph.innerText = `${getData}`
+// selectBody.appendChild(insertParagraph);
+
+
+
+// ask for proompt
+
+
+
+
+
+
+// class Person {
+//     constructor(){
+//         this.name ;
+//         this.age;
+//     }
+// }
+
+
+// var ram = new Person();
+// ram.name='ram'
+
+// var test={
+//     name:'ram',
+// }
+
+// console.log('test',test);
+
+
+// console.log(ram);
+
+
+
+// --------------------------
+
+
+// class student {
+//     constructor(name, grade, phone, section){
+//         this.name= name;
+//         this.grade= grade;
+//         this.phone= phone;
+//         this.section = section;
+//     }
+// }
+
+// class section {
+//     constructor(){
+//         this.studentsArray = [];
+//     }
+
+//     enrollStudents(name, grade, phone, section){
+//         var studentToEnroll = new student(name, grade, phone, section);
+//         this.studentsArray.push(studentToEnroll);
+//     }
+
+//     findViaRoll(no){
+//         console.log(this.studentsArray[no]);
+//     }
+// }
+
+
+// student1 = new section();
+// student2 = new section();
+// student3 = new section();
+
+// student1.enrollStudents('prastut' , 12, 9870000000, 'B');
+// student2.enrollStudents('hary' , 19, 987000500, 'B');
+// student3.enrollStudents('putter' , 10, 98989898, 'D');
+
+// console.log(student1);
+
+
+
+// ---------------------------------
+
+// class Books{
+//     constructor(name, id, author, price){
+//         this.name= name;
+//         this.id= id;
+//         this.author= author;
+//         this.price= price;
+//     }
+// }
+
+// class Library{
+//     constructor(name){
+//         this.booksArray=[];
+//         this.name=name;
+//     }
+
+//     addBooks(name, id, author, price){
+//         var addBooks = new Books(name, id, author, price);
+//         this.booksArray.push(addBooks);
+//     }
+
+//     removeBooks(no){
+//         // console.log(this.booksArray);
+//         // var number= prompt('enter which array number book you want to remove');
+//         this.removedBookArray= this.booksArray.splice(no, 1);
+//         console.log(this.removedBookArray);
+//         console.log(this.booksArray);
+//     }
+// }
+
+// var library1= new Library('a');
+// library1.addBooks('Harry Potter', 129, 'JK Rowling', 399);
+// library1.addBooks('The Alchemist' , 222, 'Paulo Coelho', 299);
+// var library2= new Library('b');
+// library2.addBooks('Think And Grow Rich', 122, 'Napoleon Hill', 699);
+// library2.addBooks('Harry Potter', 129, 'JK Rowling', 399);
+// var library3= new Library('c');
+// library3.addBooks('The Law of Success', 125, 'Napoleon Hill', 499);
+// library3.addBooks('Harry Potter', 129, 'JK Rowling', 399);
+
+
+// --------------------------------------------
+
+class Student{
+    constructor(name,phone,address){
+        this.name=name;
+        this.phone=phone;
+        this.address=address;
     }
-  
-
-};
-var screenXPosition = 0;
-for(var i = 0 ; i < images.length ; i++){
- 
-    
-    document.querySelectorAll('img')[i].ondragstart = function(event){
-        screenXPosition = event.screenX;
-    };
-    document.querySelectorAll('img')[i].ondragend = dragger
-
 }
+
+class Institute{
+    constructor(name){
+        this.name=name;
+        this.studentArray=[];
+    }
+
+    enroll(name,phone,address){
+        var addStudent=new Student(name,phone,address);
+        this.studentArray.push(addStudent);
+    }
+}
+
+var institute1= new Institute('Half Tone');
+institute1.enroll('prastut',98000000,'baneshwor');
+institute1.enroll('casm',98000000,'sunakoti');
+
+var institute2 = new Institute('Broad Way');
+institute2.enroll('samar' , 988888488, 'pepsicola');
+institute2.enroll('prashil' , 988888488, 'gaushala');
+
+// -----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
