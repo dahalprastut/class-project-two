@@ -846,86 +846,237 @@
 
 
 
-var dice;
-var currentValue = 0;
-var playerScore = [0,0];
-var activePlayer = 0;
-var roll = document.querySelector('.roll');
-var save = document.querySelector('.save');
-var diceValueDisplayer = document.querySelector('.dice-value');
-var currentValueSelector = document.querySelector('.current-value');
-document.querySelector('.player1').classList.add('active');
+// var dice;
+// var currentValue = 0;
+// var playerScore = [0,0];
+// var activePlayer = 0;
+// var roll = document.querySelector('.roll');
+// var save = document.querySelector('.save');
+// var diceValueDisplayer = document.querySelector('.dice-value');
+// var currentValueSelector = document.querySelector('.current-value');
+// document.querySelector('.player1').classList.add('active');
 
 
 
-// click on roll dice to display dice value
-roll.addEventListener('click', function () {
+// // click on roll dice to display dice value
+// roll.addEventListener('click', function () {
 
 
-    // put random value of dice in a variable
+//     // put random value of dice in a variable
 
-    dice = Math.ceil(Math.random() * 6);
-    console.log(dice);
+//     dice = Math.ceil(Math.random() * 6);
+//     console.log(dice);
 
-    // update UI with dice value
-    diceValueDisplayer.innerText = dice;
+//     // update UI with dice value
+//     diceValueDisplayer.innerText = dice;
 
-    // add the value in another variable
+//     // add the value in another variable
 
-    currentValue += dice;
+//     currentValue += dice;
 
-    // update UI with added value
-    currentValueSelector.innerText = currentValue;
+//     // update UI with added value
+//     currentValueSelector.innerText = currentValue;
 
-});
+// });
 
 
-// if save is pressed 
+// // if save is pressed 
 
-save.addEventListener('click', function(){
+// save.addEventListener('click', function(){
 
-    // save the current value to main value
-    playerScore[activePlayer]+=currentValue;
+//     // save the current value to main value
+//     playerScore[activePlayer]+=currentValue;
 
-    // make the value of UI and current dice value to 0
-    var mainValue = document.querySelector('#main-value-id-'+activePlayer);
-    mainValue.innerText=playerScore[activePlayer];
+//     // make the value of UI and current dice value to 0
+//     var mainValue = document.querySelector('#main-value-id-'+activePlayer);
+//     mainValue.innerText=playerScore[activePlayer];
 
-    
-    // change active player
-    if(activePlayer == 0){
-        activePlayer = 1;
-    }else{
-        activePlayer = 0;
+
+//     // change active player
+//     if(activePlayer == 0){
+//         activePlayer = 1;
+//     }else{
+//         activePlayer = 0;
+//     }
+
+
+//     // // change active player UI
+//     document.querySelector('.player1').classList.toggle('active');
+//     document.querySelector('.player2').classList.toggle('active');
+
+
+
+//     // set the value of current value to 0
+
+//     currentValue = 0;
+//     currentValueSelector.innerText = currentValue;
+
+//     // set the value of dice to 0
+
+//     dice = 0;
+//     diceValueDisplayer.innerText = dice;
+
+
+
+// });
+
+// --------------------------------------------------------
+
+
+
+// to do using class
+
+
+// class ToDo {
+//     constructor(task, status = true) {
+//         this.task = task;
+//         this.status = status;
+//     }
+// }
+
+// class TaskList {
+//     constructor() {
+//         this.taskArray = [];
+//     }
+
+//     getTask(task, status) {
+//         var todo = new ToDo(task, status);
+//         this.taskArray.push(todo);
+//         return this;
+//     }
+
+//     repopulate() {
+//         document.querySelector('table').innerHTML='';        
+//         for (var i = 0; i < this.taskArray.length ; i++){
+//             var item = this.taskArray[i];
+//             var selectTask = item.task;
+//             this.changeInUI(selectTask,i)
+//         }
+   
+//     }
+
+//     changeInUI(task,i){
+//         var selectTable = document.querySelector('table');
+//         var forRow = document.createElement('tr');
+//         var forColumn = document.createElement('td');
+//         var forSecondColumn = document.createElement('td');
+//         var forButton = document.createElement('button');
+//         forButton.innerText = 'remove';
+//         forButton.setAttribute('onclick',`remove(${i})`)
+//         forColumn.innerText = task;
+//         forSecondColumn.appendChild(forButton);
+//         forRow.appendChild(forColumn);
+//         forRow.appendChild(forSecondColumn);
+//         selectTable.appendChild(forRow);
+
+//     }
+
+//     removeFunction(index){
+//         // when clicked removes the same tr
+//         this.taskArray.splice(index,1);
+//         return this;
+
+//     }
+
+// }
+
+
+
+// selectButton = document.querySelector('button');
+// obj1 = new TaskList();
+// selectButton.onclick= function(){
+//     var askQuestion = prompt('what do you want to add in ToDo?');
+//     obj1.getTask(askQuestion).repopulate();
+
+// }
+
+
+
+
+// var remove = function(index){
+//     obj1.removeFunction(index).repopulate();
+// }
+
+
+
+// -----------------------------------------
+
+
+
+class ToDo {
+    constructor(task){
+        this.task = task;
+    }
+}
+
+class TaskList {
+    // make array store the tasks
+
+    constructor(){
+        this.taskArray = [];
+        if(localStorage.getItem('items')){
+            this.taskArray = JSON.parse(localStorage.getItem('items'));
+
+        }
     }
     
+    addInArray(task){
+        var todo = new ToDo(task);
+        this.taskArray.push(todo);
+        localStorage.setItem('items' , JSON.stringify(this.taskArray));
+        return this;
+    }
     
-    // // change active player UI
-    document.querySelector('.player1').classList.toggle('active');
-    document.querySelector('.player2').classList.toggle('active');
+    removeArray(index){
+        this.taskArray.splice(index , 1);
+        localStorage.setItem('items' , JSON.stringify(this.taskArray));
+        return this;
+    }
+
+    // change the data
+    
+    repopulate(){
+        document.querySelector('table').innerHTML='';
+        for (var i = 0 ; i < this.taskArray.length ; i++){
+            var item = this.taskArray[i];
+            var selectTask = item.task;
+            this.changeUI(selectTask , i);
+        }
+    }
+    
+    // display task1 in UI
+    changeUI(selectTask , i){
+        var selectTable = document.querySelector('table');
+        var forRow = document.createElement('tr');
+        var forColumn = document.createElement('td');
+        var forSecondColumn = document.createElement('td');
+        var forButton = document.createElement('button');
+        forButton.innerText = 'Remove';
+        forButton.setAttribute('onclick' , `remove(${i})`);
+        forSecondColumn.appendChild(forButton);
+        forColumn.innerText = selectTask;
+        forRow.appendChild(forColumn);
+        forRow.appendChild(forSecondColumn);
+        selectTable.appendChild(forRow);
+    }
 
 
+}
 
-    // set the value of current value to 0
+var ButtonSelector = document.querySelector('button');
+var task1 = new TaskList();
 
-    currentValue = 0;
-    currentValueSelector.innerText = currentValue;
+window.onload = ()=>{
+    task1.repopulate();
+}
+var remove = function(index){
+    task1.removeArray(index).repopulate();
+}
 
-    // set the value of dice to 0
-
-    dice = 0;
-    diceValueDisplayer.innerText = dice;
-
-
- 
-});
-
-
-
-
-
-
-
+ButtonSelector.onclick = function(){
+    var ask = prompt('enter your To Do list');
+    task1.addInArray(ask).repopulate();
+}
 
 
 
