@@ -1003,6 +1003,83 @@
 
 
 
+// class ToDo {
+//     constructor(task){
+//         this.task = task;
+//     }
+// }
+
+// class TaskList {
+//     // make array store the tasks
+
+//     constructor(){
+//         this.taskArray = [];
+//         if(localStorage.getItem('items')){
+//             this.taskArray = JSON.parse(localStorage.getItem('items'));
+
+//         }
+//     }
+    
+//     addInArray(task){
+//         var todo = new ToDo(task);
+//         this.taskArray.push(todo);
+//         localStorage.setItem('items' , JSON.stringify(this.taskArray));
+//         return this;
+//     }
+    
+//     removeArray(index){
+//         this.taskArray.splice(index , 1);
+//         localStorage.setItem('items' , JSON.stringify(this.taskArray));
+//         return this;
+//     }
+
+//     // change the data
+    
+//     repopulate(){
+//         document.querySelector('table').innerHTML='';
+//         for (var i = 0 ; i < this.taskArray.length ; i++){
+//             var item = this.taskArray[i];
+//             var selectTask = item.task;
+//             this.changeUI(selectTask , i);
+//         }
+//     }
+    
+//     // display task1 in UI
+//     changeUI(selectTask , i){
+//         var selectTable = document.querySelector('table');
+//         var forRow = document.createElement('tr');
+//         var forColumn = document.createElement('td');
+//         var forSecondColumn = document.createElement('td');
+//         var forButton = document.createElement('button');
+//         forButton.innerText = 'Remove';
+//         forButton.setAttribute('onclick' , `remove(${i})`);
+//         forSecondColumn.appendChild(forButton);
+//         forColumn.innerText = selectTask;
+//         forRow.appendChild(forColumn);
+//         forRow.appendChild(forSecondColumn);
+//         selectTable.appendChild(forRow);
+//     }
+
+
+// }
+
+// var ButtonSelector = document.querySelector('button');
+// var task1 = new TaskList();
+
+// window.onload = ()=>{
+//     task1.repopulate();
+// }
+// var remove = function(index){
+//     task1.removeArray(index).repopulate();
+// }
+
+// ButtonSelector.onclick = function(){
+//     var ask = prompt('enter your To Do list');
+//     task1.addInArray(ask).repopulate();
+// }
+
+// -----------------------------------------------------------
+
 class ToDo {
     constructor(task){
         this.task = task;
@@ -1010,75 +1087,70 @@ class ToDo {
 }
 
 class TaskList {
-    // make array store the tasks
-
     constructor(){
         this.taskArray = [];
-        if(localStorage.getItem('items')){
-            this.taskArray = JSON.parse(localStorage.getItem('items'));
-
+        if(localStorage.getItem('key')){
+            this.taskArray = JSON.parse(localStorage.getItem('key'));
         }
     }
-    
-    addInArray(task){
+
+    addToDo(task){
         var todo = new ToDo(task);
         this.taskArray.push(todo);
-        localStorage.setItem('items' , JSON.stringify(this.taskArray));
-        return this;
-    }
-    
-    removeArray(index){
-        this.taskArray.splice(index , 1);
-        localStorage.setItem('items' , JSON.stringify(this.taskArray));
+        localStorage.setItem('key' , JSON.stringify(this.taskArray));
         return this;
     }
 
-    // change the data
-    
-    repopulate(){
+    changeData(){
         document.querySelector('table').innerHTML='';
-        for (var i = 0 ; i < this.taskArray.length ; i++){
+        for(var i = 0 ; i < this.taskArray.length ; i++){
             var item = this.taskArray[i];
-            var selectTask = item.task;
+            var selectTask =  item.task;
             this.changeUI(selectTask , i);
+            
         }
     }
-    
-    // display task1 in UI
-    changeUI(selectTask , i){
-        var selectTable = document.querySelector('table');
-        var forRow = document.createElement('tr');
-        var forColumn = document.createElement('td');
-        var forSecondColumn = document.createElement('td');
-        var forButton = document.createElement('button');
-        forButton.innerText = 'Remove';
-        forButton.setAttribute('onclick' , `remove(${i})`);
-        forSecondColumn.appendChild(forButton);
-        forColumn.innerText = selectTask;
-        forRow.appendChild(forColumn);
-        forRow.appendChild(forSecondColumn);
-        selectTable.appendChild(forRow);
+
+    removeToDo(i){
+        this.taskArray.splice(i,1);
+        localStorage.setItem('key' , JSON.stringify(this.taskArray));
+        return this;
     }
 
+    changeUI(selectTask , i){
+
+            var selectTable = document.querySelector('table');
+            var forRow = document.createElement('tr');
+            var forColumn = document.createElement('td');
+            var forSecondColumn = document.createElement('td');
+            var forButton = document.createElement('button');
+            forButton.innerText = 'remove';
+            forButton.setAttribute('onclick' , `remove(${i})`)
+            forColumn.innerText = selectTask;
+            forRow.appendChild(forColumn);
+            forSecondColumn.appendChild(forButton);
+            forRow.appendChild(forSecondColumn);
+            selectTable.appendChild(forRow);
+    }
 
 }
 
-var ButtonSelector = document.querySelector('button');
+window.onload = function(){
+    task1.changeData();
+}
+    
+
+
 var task1 = new TaskList();
 
-window.onload = ()=>{
-    task1.repopulate();
-}
-var remove = function(index){
-    task1.removeArray(index).repopulate();
+document.querySelector('button').onclick = function(){
+    var ask = prompt('enter your to do list');
+    task1.addToDo(ask).changeData();
 }
 
-ButtonSelector.onclick = function(){
-    var ask = prompt('enter your To Do list');
-    task1.addInArray(ask).repopulate();
+var remove = function(i){
+    task1.removeToDo(i).changeData();
 }
-
-
 
 
 
